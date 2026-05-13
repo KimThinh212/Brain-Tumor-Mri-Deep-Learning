@@ -38,6 +38,8 @@ Statistical summary of the image count per class:
 A detailed bar plot showing the number of images per class is saved at:
 `reports/images/information_data/number_of_images_per_class_dark.png`
 
+<img width="1400" height="800" alt="Image" src="https://github.com/user-attachments/assets/5183b368-4a0e-465f-8c5d-cc01a4b454d3" />
+
 ### 4. Imbalance Assessment
 *   **Maximum images in a class:** 977
 *   **Minimum images in a class:** 118
@@ -53,6 +55,8 @@ A detailed bar plot showing the number of images per class is saved at:
 ### 6. Sample Images
 The notebook displays 6 sample images representing the first 6 classes in grayscale.
 Output saved at: `reports/images/information_data/sample_mri_images.png`
+
+<img width="1500" height="1000" alt="Image" src="https://github.com/user-attachments/assets/da888d06-683e-47a5-8cc2-a7ccfe4909f6" />
 
 ## Metadata from DATA.json
 The `DATA.json` file located in the raw data directory contains supplementary information for each image, such as detailed diagnosis, lesion location, and patient data. The notebook extracts and previews the first 10 keys for structure validation.

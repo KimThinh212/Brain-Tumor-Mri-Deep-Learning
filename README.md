@@ -38,14 +38,14 @@ Brain-Tumor-Mri-Deep-Learning/
 
 # 🚀 Features
 
-✅ Brain tumor MRI classification
-✅ Deep Learning with CNN architectures
-✅ MRI image preprocessing
-✅ Model training and evaluation
-✅ Accuracy and loss visualization
-✅ Confusion matrix generation
-✅ Classification report generation
-✅ Deployment-ready project structure
+* Brain tumor MRI classification
+* Deep Learning with CNN architectures
+* MRI image preprocessing
+* Model training and evaluation
+* Accuracy and loss visualization
+* Confusion matrix generation
+* Classification report generation
+* Deployment-ready project structure
 
 ---
 
@@ -80,59 +80,6 @@ pip install -r requirements.txt
 
 ---
 
-# 📥 Dataset Setup
-
-1️⃣ Download the dataset from Kaggle
-2️⃣ Extract the dataset into the `data/` directory
-
-Example:
-
-```bash
-data/
-├── train/
-├── test/
-└── validation/
-```
-
----
-
-# 🏋️ Training
-
-Run the training script:
-
-```bash
-python src/train.py
-```
-
----
-
-# 📊 Evaluation
-
-Run evaluation:
-
-```bash
-python src/evaluate.py
-```
-
-Generated outputs may include:
-
-📈 Accuracy graph
-📉 Loss graph
-🧩 Confusion matrix
-📝 Classification report
-
-
----
-
-# 🔮 Future Improvements
-
-* 🚀 Transfer Learning (ResNet50, EfficientNet)
-* 🔥 Grad-CAM visualization
-* 🌐 Streamlit / Flask deployment
-* ⚙️ Hyperparameter optimization
-* 📊 Model comparison dashboard
-
----
 
 # 👨‍💻 Author
 

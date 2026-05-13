@@ -121,16 +121,6 @@ Generated outputs may include:
 🧩 Confusion matrix
 📝 Classification report
 
----
-
-# 📌 Results
-
-| Metric       | Value |
-| ------------ | ----- |
-| 🎯 Accuracy  | 95%   |
-| 📍 Precision | 94%   |
-| 🔄 Recall    | 95%   |
-| ⚖️ F1-Score  | 94%   |
 
 ---
 

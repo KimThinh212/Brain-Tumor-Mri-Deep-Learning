@@ -81,20 +81,13 @@ pip install -r requirements.txt
 ---
 
 
-# 👨‍💻 Author
-## Contributors Hall of Fame
+# 👥 Contributors
 
 Show some love and end up in the hall of fame. Contributors get free merch and special access to our Discord.
 
-<a href="https://github.com/KimThinh212/Brain-Tumor-Mri-Deep-Learning/graphs/contributors">
-  <img src="https://contrib.rocks/KimThinh212/Brain-Tumor-Mri-Deep-Learning" />
-</a>
+<p align="center">
+  <a href="https://github.com/KimThinh212/Brain-Tumor-Mri-Deep-Learning/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=KimThinh212/Brain-Tumor-Mri-Deep-Learning" />
+  </a>
+</p>
 
-🔗 GitHub Repository:
-https://github.com/KimThinh212/Brain-Tumor-Mri-Deep-Learning
-
----
-
-# 📜 License
-
-This project is developed for educational and research purposes.

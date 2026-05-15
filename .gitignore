@@ -2,3 +2,6 @@ data/*
 data/raw/*.json
 data/*.zip
 !data/README.md
+
+models/*
+!models/README.md

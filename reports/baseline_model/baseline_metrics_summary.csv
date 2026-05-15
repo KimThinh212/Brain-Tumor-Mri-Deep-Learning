@@ -1,0 +1,2 @@
+model_name,image_size,batch_size,epochs,test_loss,test_accuracy,precision_macro,recall_macro,f1_macro,precision_weighted,recall_weighted,f1_weighted
+Baseline CNN,"(224, 224)",32,20,1.7761292457580566,0.42492753623188406,0.4647875658959674,0.3858968619540671,0.38880413990446105,0.45569268685632125,0.42492753623188406,0.4083482008614067

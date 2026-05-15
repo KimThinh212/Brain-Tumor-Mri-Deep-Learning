@@ -1,43 +1,122 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Brain Tumor MRI Classification</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>NeuroScan AI | Brain Tumor MRI Dashboard</title>
+    <!-- Google Fonts + Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main class="container">
-        <section class="hero">
-            <h1>🧠 Brain Tumor MRI Classification</h1>
-            <p>Upload ảnh MRI để dự đoán loại khối u não bằng mô hình Deep Learning.</p>
-            <div class="warning">
-                ⚠️ Ứng dụng chỉ phục vụ học tập và nghiên cứu, không thay thế chẩn đoán y khoa.
+
+<div class="dashboard-container">
+    <!-- Modern header -->
+    <div class="dashboard-header">
+        <div class="logo-area">
+            <h1>
+                <i class="fas fa-brain"></i> NeuroScan AI
+                <span class="version-badge">MRI Classifier</span>
+            </h1>
+            <p class="subtitle">Deep Learning · 4-class tumor classification</p>
+        </div>
+        <div class="badge-clinical">
+            <i class="fas fa-flask"></i> Research & Educational Use
+        </div>
+    </div>
+
+    <!-- warning message -->
+    <div class="warning-banner">
+        <i class="fas fa-exclamation-triangle"></i> Ứng dụng chỉ phục vụ học tập và nghiên cứu, không thay thế chẩn đoán y khoa. Kết quả mang tính tham khảo từ mô hình AI.
+    </div>
+
+    <!-- main grid: left side (upload + preview) , right side (dashboard results) -->
+    <div class="dashboard-grid">
+        <!-- LEFT CARD -->
+        <div class="card-dark card-padding">
+            <div class="section-title">
+                <i class="fas fa-upload" style="color:#3b82f6"></i> 
+                <span>MRI Scanner Interface</span>
             </div>
-        </section>
+            <div class="upload-area" id="uploadTrigger">
+                <div class="upload-icon">
+                    <i class="fas fa-cloud-upload-alt fa-3x"></i>
+                </div>
+                <p style="margin-bottom: 10px;">Tải lên ảnh MRI não (JPEG, PNG, WEBP)</p>
+                <input type="file" id="imageInput" accept="image/jpeg, image/png, image/jpg, image/webp" />
+                <label for="imageInput" class="custom-file-label" id="fileSelectLabel">
+                    <i class="fas fa-folder-open"></i> Chọn file ảnh
+                </label>
+                <div id="fileNameDisplay" class="file-name"></div>
+            </div>
 
-        <section class="card">
-            <input type="file" id="imageInput" accept="image/*" />
-
-            <div class="preview-box">
+            <div class="preview-container">
                 <img id="previewImage" alt="MRI Preview" />
+                <div id="noPreviewMsg" class="preview-placeholder">
+                    <i class="fas fa-image"></i> Chưa có ảnh xem trước
+                </div>
             </div>
 
-            <button id="predictBtn">Dự đoán</button>
+            <button id="predictBtn" class="predict-btn">
+                <i class="fas fa-microscope"></i> Phân tích & Dự đoán
+            </button>
 
-            <div id="loading" class="hidden">Đang dự đoán...</div>
-
-            <div id="result" class="result hidden">
-                <h2>Kết quả dự đoán</h2>
-                <p><strong>Loại bệnh:</strong> <span id="predictedClass"></span></p>
-                <p><strong>Độ tin cậy:</strong> <span id="confidence"></span></p>
-
-                <h3>Xác suất từng lớp</h3>
-                <div id="probabilities"></div>
+            <div id="loading" class="loading-spinner hidden">
+                <i class="fas fa-spinner fa-pulse fa-lg"></i> 
+                <span>Đang xử lý ảnh MRI bằng mô hình AI...</span>
             </div>
-        </section>
-    </main>
+        </div>
 
-    <script src="script.js"></script>
+        <!-- RIGHT CARD (Dashboard prediction results + chart) -->
+        <div class="card-dark card-padding">
+            <div class="section-title">
+                <i class="fas fa-chart-pie" style="color:#10b981"></i>
+                <span>Phân tích & Xác suất</span>
+            </div>
+            <div id="result" class="hidden">
+                <div class="result-header">
+                    <i class="fas fa-diagnoses"></i> Kết quả chẩn đoán AI
+                </div>
+                <div class="prediction-badge">
+                    <div class="prediction-row">
+                        <span class="prediction-label">Loại bệnh dự đoán:</span>
+                        <span class="class-label" id="predictedClass">---</span>
+                    </div>
+                    <div class="confidence-text">
+                        <i class="fas fa-chart-line"></i> Độ tin cậy: <strong id="confidence">0%</strong>
+                    </div>
+                </div>
+
+                <!-- Modern Chart.js bar chart -->
+                <div class="chart-container">
+                    <canvas id="probChart" width="400" height="220"></canvas>
+                </div>
+
+                <!-- additional detailed probability bars -->
+                <div style="margin-top: 10px;">
+                    <div id="probabilitiesList"></div>
+                </div>
+                <hr>
+                <div class="chart-footer-note">
+                    <i class="fas fa-chart-simple"></i> Biểu đồ thể hiện phân phối xác suất từ mô hình CNN
+                </div>
+            </div>
+
+            <div id="placeholderResult" class="placeholder-result">
+                <i class="fas fa-chart-bar" class="placeholder-icon"></i>
+                <p>Chưa có kết quả dự đoán</p>
+                <p class="placeholder-sub">Hãy tải ảnh MRI và nhấn "Phân tích & Dự đoán"</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer-note">
+        <i class="fas fa-database"></i> Mô hình: EfficientNet-based trên tập dữ liệu Brain Tumor MRI (glioma, meningioma, pituitary, no-tumor) | Dark Dashboard UI
+    </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brain Tumor MRI Classification</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <main class="container">
+        <section class="hero">
+            <h1>🧠 Brain Tumor MRI Classification</h1>
+            <p>Upload ảnh MRI để dự đoán loại khối u não bằng mô hình Deep Learning.</p>
+            <div class="warning">
+                ⚠️ Ứng dụng chỉ phục vụ học tập và nghiên cứu, không thay thế chẩn đoán y khoa.
+            </div>
+        </section>
+
+        <section class="card">
+            <input type="file" id="imageInput" accept="image/*" />
+
+            <div class="preview-box">
+                <img id="previewImage" alt="MRI Preview" />
+            </div>
+
+            <button id="predictBtn">Dự đoán</button>
+
+            <div id="loading" class="hidden">Đang dự đoán...</div>
+
+            <div id="result" class="result hidden">
+                <h2>Kết quả dự đoán</h2>
+                <p><strong>Loại bệnh:</strong> <span id="predictedClass"></span></p>
+                <p><strong>Độ tin cậy:</strong> <span id="confidence"></span></p>
+
+                <h3>Xác suất từng lớp</h3>
+                <div id="probabilities"></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

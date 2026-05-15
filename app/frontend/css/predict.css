@@ -1,0 +1,250 @@
+/* ============================================
+   PREDICT TAB STYLES
+   ============================================ */
+
+.predict-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 28px;
+}
+
+/* Upload Area */
+.upload-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 28px;
+}
+
+.upload-area {
+    border: 2px dashed var(--border-light);
+    background: var(--bg-tertiary);
+    border-radius: 20px;
+    padding: 40px 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.upload-area:hover {
+    border-color: var(--primary);
+    background: rgba(37, 99, 235, 0.05);
+}
+
+.upload-icon {
+    font-size: 3.5rem;
+    color: var(--primary-light);
+    margin-bottom: 16px;
+}
+
+.upload-area p {
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+}
+
+.file-input {
+    display: none;
+}
+
+.file-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary);
+    padding: 10px 24px;
+    border-radius: 40px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.file-label:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+.file-name {
+    margin-top: 12px;
+    font-size: 0.85rem;
+    color: var(--secondary);
+}
+
+/* Preview */
+.preview-container {
+    margin-top: 24px;
+    background: var(--bg-tertiary);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#previewImage {
+    max-width: 100%;
+    max-height: 280px;
+    border-radius: 16px;
+    display: none;
+}
+
+.preview-placeholder {
+    color: var(--text-muted);
+}
+
+.preview-placeholder i {
+    font-size: 3rem;
+    margin-bottom: 12px;
+    display: block;
+}
+
+/* Predict Button */
+.predict-action {
+    margin-top: 24px;
+}
+
+.btn-predict {
+    width: 100%;
+    background: linear-gradient(95deg, var(--primary), var(--primary-dark));
+    border: none;
+    padding: 16px;
+    border-radius: 50px;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.btn-predict:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+}
+
+.btn-predict:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Results Card */
+.results-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 28px;
+}
+
+.result-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.result-header i {
+    font-size: 1.8rem;
+    color: var(--secondary);
+}
+
+.result-header h3 {
+    font-size: 1.3rem;
+}
+
+.prediction-badge {
+    background: var(--bg-tertiary);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+.prediction-class {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary-light);
+    word-break: break-word;
+}
+
+.confidence-value {
+    font-size: 1.2rem;
+    color: var(--secondary);
+    margin-top: 8px;
+}
+
+/* Chart */
+.chart-wrapper {
+    background: var(--bg-tertiary);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+#probChart {
+    max-height: 260px;
+    width: 100%;
+}
+
+/* Probability List */
+.prob-list {
+    margin-top: 20px;
+}
+
+.prob-item {
+    margin-bottom: 14px;
+}
+
+.prob-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+}
+
+.prob-bar-bg {
+    background: var(--border-light);
+    border-radius: 10px;
+    height: 8px;
+    overflow: hidden;
+}
+
+.prob-bar-fill {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
+.placeholder-result {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-muted);
+}
+
+.placeholder-result i {
+    font-size: 4rem;
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+/* Loading */
+.loading-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 40px;
+    background: var(--bg-tertiary);
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+@media (max-width: 880px) {
+    .predict-grid {
+        grid-template-columns: 1fr;
+    }
+}

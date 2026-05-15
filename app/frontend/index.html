@@ -2,294 +2,133 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>NeuroScan AI | Brain Tumor MRI Dashboard</title>
-    <!-- Google Fonts + Font Awesome Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NeuroScan AI - Hệ thống phân tích khối u não bằng trí tuệ nhân tạo">
+    <meta name="author" content="NeuroScan AI Team">
+    <title>NeuroScan AI | Brain Tumor Classification System</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Chart.js CDN -->
+    
+    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/predict.css">
+    <link rel="stylesheet" href="css/model.css">
+    <link rel="stylesheet" href="css/account.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
 </head>
 <body>
 
-<div class="dashboard-container">
-    <!-- Header with user info -->
-    <div class="dashboard-header">
-        <div class="logo-area">
-            <h1>
-                <i class="fas fa-brain"></i> NeuroScan AI
-                <span class="version-badge">v2.0</span>
-            </h1>
-            <p class="subtitle">Deep Learning · Brain Tumor Classification System</p>
-        </div>
-        <div id="authStatus" class="auth-status">
-            <div id="notLoggedInView" class="not-logged">
-                <i class="fas fa-user-circle"></i> Chưa đăng nhập
+<div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-logo">
+            <div class="logo-icon">
+                <i class="fas fa-brain"></i>
             </div>
-            <div id="loggedInView" class="logged-in hidden">
-                <span><i class="fas fa-user-check"></i> <span id="userName">User</span></span>
-                <button id="logoutBtnMobile" class="logout-small"><i class="fas fa-sign-out-alt"></i></button>
+            <div class="logo-text">
+                <span class="logo-title">NeuroScan</span>
+                <span class="logo-subtitle">AI Medical Imaging</span>
             </div>
         </div>
-    </div>
 
-    <!-- Tab Navigation -->
-    <div class="tab-container">
-        <button class="tab-btn active" data-tab="home">
-            <i class="fas fa-home"></i> Trang chủ
-        </button>
-        <button class="tab-btn" data-tab="predict">
-            <i class="fas fa-microscope"></i> Dự đoán MRI
-        </button>
-        <button class="tab-btn" data-tab="model">
-            <i class="fas fa-chart-line"></i> Model & Độ chính xác
-        </button>
-        <button class="tab-btn" data-tab="account" id="accountTabBtn">
-            <i class="fas fa-user-lock"></i> Tài khoản
-        </button>
-    </div>
-
-    <!-- Tab Content: Trang chủ -->
-    <div id="homeTab" class="tab-content active">
-        <div class="hero-section">
-            <div class="hero-banner">
-                <h2>Hệ thống phân tích khối u não bằng AI</h2>
-                <p>Sử dụng mô hình Deep Learning tiên tiến để hỗ trợ chẩn đoán hình ảnh MRI</p>
-                <button class="cta-btn" id="goToPredictBtn"><i class="fas fa-arrow-right"></i> Bắt đầu dự đoán</button>
-            </div>
-        </div>
-        
-        <div class="features-grid">
-            <div class="feature-card">
-                <i class="fas fa-chart-pie"></i>
-                <h3>Độ chính xác cao</h3>
-                <p>Mô hình đạt độ chính xác >92% trên tập kiểm tra</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-bolt"></i>
-                <h3>Phân tích nhanh</h3>
-                <p>Kết quả dự đoán chỉ trong vài giây</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-shield-alt"></i>
-                <h3>Bảo mật dữ liệu</h3>
-                <p>Hình ảnh không được lưu trữ sau khi xử lý</p>
-            </div>
-            <div class="feature-card">
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-tab="home">
+                <i class="fas fa-home"></i>
+                <span>Trang chủ</span>
+            </a>
+            <a href="#" class="nav-item" data-tab="predict">
+                <i class="fas fa-microscope"></i>
+                <span>Dự đoán MRI</span>
+            </a>
+            <a href="#" class="nav-item" data-tab="model">
                 <i class="fas fa-chart-line"></i>
-                <h3>Dashboard trực quan</h3>
-                <p>Biểu đồ xác suất và thống kê chi tiết</p>
+                <span>Model & Metrics</span>
+            </a>
+            <a href="#" class="nav-item" data-tab="account">
+                <i class="fas fa-user-circle"></i>
+                <span>Tài khoản</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="system-status">
+                <i class="fas fa-circle"></i>
+                <span>System Online</span>
             </div>
+            <div class="version">v2.0.0</div>
         </div>
+    </aside>
 
-        <div class="stats-preview">
-            <h3><i class="fas fa-chart-simple"></i> Thống kê hệ thống</h3>
-            <div class="stats-row">
-                <div class="stat-item">
-                    <span class="stat-value" id="totalPredictions">0</span>
-                    <span class="stat-label">Lượt dự đoán</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-value">4</span>
-                    <span class="stat-label">Lớp bệnh lý</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-value">3264</span>
-                    <span class="stat-label">Ảnh huấn luyện</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Tab Content: Dự đoán MRI -->
-    <div id="predictTab" class="tab-content">
-        <div class="dashboard-grid">
-            <!-- LEFT CARD -->
-            <div class="card-dark card-padding">
-                <div class="section-title">
-                    <i class="fas fa-upload" style="color:#3b82f6"></i> 
-                    <span>MRI Scanner Interface</span>
-                </div>
-                <div class="upload-area" id="uploadTrigger">
-                    <div class="upload-icon">
-                        <i class="fas fa-cloud-upload-alt fa-3x"></i>
-                    </div>
-                    <p>Tải lên ảnh MRI não (JPEG, PNG, WEBP)</p>
-                    <input type="file" id="imageInput" accept="image/jpeg, image/png, image/jpg, image/webp" />
-                    <label for="imageInput" class="custom-file-label" id="fileSelectLabel">
-                        <i class="fas fa-folder-open"></i> Chọn file ảnh
-                    </label>
-                    <div id="fileNameDisplay" class="file-name"></div>
-                </div>
-
-                <div class="preview-container">
-                    <img id="previewImage" alt="MRI Preview" />
-                    <div id="noPreviewMsg" class="preview-placeholder">
-                        <i class="fas fa-image"></i> Chưa có ảnh xem trước
-                    </div>
-                </div>
-
-                <button id="predictBtn" class="predict-btn">
-                    <i class="fas fa-microscope"></i> Phân tích & Dự đoán
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Header -->
+        <header class="top-header">
+            <div class="header-left">
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
                 </button>
-
-                <div id="loading" class="loading-spinner hidden">
-                    <i class="fas fa-spinner fa-pulse fa-lg"></i> 
-                    <span>Đang xử lý ảnh MRI bằng mô hình AI...</span>
-                </div>
+                <div class="page-title" id="pageTitle">Dashboard</div>
             </div>
-
-            <!-- RIGHT CARD (Results) -->
-            <div class="card-dark card-padding">
-                <div class="section-title">
-                    <i class="fas fa-chart-pie" style="color:#10b981"></i>
-                    <span>Phân tích & Xác suất</span>
-                </div>
-                <div id="result" class="hidden">
-                    <div class="result-header">
-                        <i class="fas fa-diagnoses"></i> Kết quả chẩn đoán AI
+            <div class="header-right">
+                <div id="authStatus" class="user-menu">
+                    <div id="notLoggedInView" class="user-guest">
+                        <i class="fas fa-user-circle"></i>
+                        <span>Khách</span>
                     </div>
-                    <div class="prediction-badge">
-                        <div class="prediction-row">
-                            <span class="prediction-label">Loại bệnh dự đoán:</span>
-                            <span class="class-label" id="predictedClass">---</span>
+                    <div id="loggedInView" class="user-logged hidden">
+                        <div class="user-avatar">
+                            <i class="fas fa-user-md"></i>
                         </div>
-                        <div class="confidence-text">
-                            <i class="fas fa-chart-line"></i> Độ tin cậy: <strong id="confidence">0%</strong>
+                        <div class="user-info">
+                            <span class="user-name" id="userNameDisplay">User</span>
+                            <span class="user-role">Medical Professional</span>
                         </div>
-                    </div>
-
-                    <div class="chart-container">
-                        <canvas id="probChart" width="400" height="220"></canvas>
-                    </div>
-
-                    <div style="margin-top: 10px;">
-                        <div id="probabilitiesList"></div>
-                    </div>
-                    <hr>
-                    <div class="chart-footer-note">
-                        <i class="fas fa-chart-simple"></i> Biểu đồ thể hiện phân phối xác suất từ mô hình CNN
+                        <button class="logout-icon-btn" id="logoutIconBtn" title="Đăng xuất">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
                     </div>
                 </div>
+            </div>
+        </header>
 
-                <div id="placeholderResult" class="placeholder-result">
-                    <i class="fas fa-chart-bar"></i>
-                    <p>Chưa có kết quả dự đoán</p>
-                    <p class="placeholder-sub">Hãy tải ảnh MRI và nhấn "Phân tích & Dự đoán"</p>
-                </div>
+        <!-- Tab Contents -->
+        <div class="tab-content-wrapper">
+            <!-- Home Tab -->
+            <div id="homeTab" class="tab-pane active">
+                <!-- Home content loaded dynamically -->
+            </div>
+
+            <!-- Predict Tab -->
+            <div id="predictTab" class="tab-pane">
+                <!-- Predict content loaded dynamically -->
+            </div>
+
+            <!-- Model Tab -->
+            <div id="modelTab" class="tab-pane">
+                <!-- Model content loaded dynamically -->
+            </div>
+
+            <!-- Account Tab -->
+            <div id="accountTab" class="tab-pane">
+                <!-- Account content loaded dynamically -->
             </div>
         </div>
-    </div>
-
-    <!-- Tab Content: Model & Độ chính xác -->
-    <div id="modelTab" class="tab-content">
-        <div class="model-dashboard">
-            <div class="model-header">
-                <h2><i class="fas fa-brain"></i> Kiến trúc mô hình</h2>
-                <p>EfficientNet-B0 fine-tuned trên tập dữ liệu Brain Tumor MRI</p>
-            </div>
-            
-            <div class="metrics-grid">
-                <div class="metric-card">
-                    <i class="fas fa-chart-line"></i>
-                    <div class="metric-value" id="accuracyValue">94.2%</div>
-                    <div class="metric-label">Độ chính xác (Accuracy)</div>
-                </div>
-                <div class="metric-card">
-                    <i class="fas fa-chart-line"></i>
-                    <div class="metric-value" id="precisionValue">93.8%</div>
-                    <div class="metric-label">Precision (Trung bình)</div>
-                </div>
-                <div class="metric-card">
-                    <i class="fas fa-chart-line"></i>
-                    <div class="metric-value" id="recallValue">94.1%</div>
-                    <div class="metric-label">Recall (Trung bình)</div>
-                </div>
-                <div class="metric-card">
-                    <i class="fas fa-chart-line"></i>
-                    <div class="metric-value" id="f1Value">93.9%</div>
-                    <div class="metric-label">F1-Score</div>
-                </div>
-            </div>
-
-            <div class="model-details">
-                <div class="detail-card">
-                    <h3><i class="fas fa-code-branch"></i> Chi tiết mô hình</h3>
-                    <ul>
-                        <li><strong>Base model:</strong> EfficientNet-B0</li>
-                        <li><strong>Input size:</strong> 224x224 pixels</li>
-                        <li><strong>Số lớp:</strong> 4 (Glioma, Meningioma, Pituitary, No Tumor)</li>
-                        <li><strong>Optimizer:</strong> Adam (lr=0.0001)</li>
-                        <li><strong>Loss function:</strong> Categorical Cross-entropy</li>
-                    </ul>
-                </div>
-                <div class="detail-card">
-                    <h3><i class="fas fa-database"></i> Tập dữ liệu</h3>
-                    <ul>
-                        <li><strong>Nguồn:</strong> Figshare + SARTAJ</li>
-                        <li><strong>Tổng số ảnh:</strong> 7,023 ảnh MRI</li>
-                        <li><strong>Train/Val/Test:</strong> 70/15/15%</li>
-                        <li><strong>Data augmentation:</strong> Rotation, Flip, Zoom</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="confusion-section">
-                <h3><i class="fas fa-table"></i> Confusion Matrix & Per-class Accuracy</h3>
-                <div class="per-class-stats" id="perClassStats">
-                    <!-- Dynamic per-class stats will be populated here -->
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Tab Content: Tài khoản (Login/Register) -->
-    <div id="accountTab" class="tab-content">
-        <div class="account-container">
-            <div id="loginPanel" class="auth-panel">
-                <div class="auth-header">
-                    <i class="fas fa-sign-in-alt"></i>
-                    <h3>Đăng nhập</h3>
-                </div>
-                <input type="text" id="loginUsername" placeholder="Tên đăng nhập" class="auth-input">
-                <input type="password" id="loginPassword" placeholder="Mật khẩu" class="auth-input">
-                <button id="doLoginBtn" class="auth-btn"><i class="fas fa-key"></i> Đăng nhập</button>
-                <p class="auth-switch">Chưa có tài khoản? <a href="#" id="showRegisterBtn">Đăng ký</a></p>
-            </div>
-
-            <div id="registerPanel" class="auth-panel hidden">
-                <div class="auth-header">
-                    <i class="fas fa-user-plus"></i>
-                    <h3>Đăng ký</h3>
-                </div>
-                <input type="text" id="regUsername" placeholder="Tên đăng nhập" class="auth-input">
-                <input type="password" id="regPassword" placeholder="Mật khẩu" class="auth-input">
-                <input type="password" id="regConfirmPassword" placeholder="Xác nhận mật khẩu" class="auth-input">
-                <button id="doRegisterBtn" class="auth-btn"><i class="fas fa-user-check"></i> Đăng ký</button>
-                <p class="auth-switch">Đã có tài khoản? <a href="#" id="showLoginBtn">Đăng nhập</a></p>
-            </div>
-
-            <div id="profilePanel" class="profile-panel hidden">
-                <div class="profile-header">
-                    <i class="fas fa-user-circle"></i>
-                    <h3>Thông tin tài khoản</h3>
-                </div>
-                <div class="profile-info">
-                    <p><i class="fas fa-user"></i> <strong>Username:</strong> <span id="profileUsername">---</span></p>
-                    <p><i class="fas fa-calendar"></i> <strong>Thành viên từ:</strong> <span id="memberSince">2025</span></p>
-                    <p><i class="fas fa-chart-line"></i> <strong>Số lần dự đoán:</strong> <span id="userPredictions">0</span></p>
-                </div>
-                <button id="logoutBtn" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Đăng xuất</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="footer-note">
-        <i class="fas fa-database"></i> NeuroScan AI v2.0 | Mô hình EfficientNet-B0 | Dữ liệu Brain Tumor MRI (glioma, meningioma, pituitary, no-tumor)
-    </div>
+    </main>
 </div>
 
-<script src="script.js"></script>
+<!-- Scripts -->
+<script src="js/utils.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/predict.js"></script>
+<script src="js/model.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

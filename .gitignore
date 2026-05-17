@@ -8,6 +8,8 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+**/__pycache__/
+*.pyc
 
 # Các thư mục môi trường ảo nếu có
 venv/

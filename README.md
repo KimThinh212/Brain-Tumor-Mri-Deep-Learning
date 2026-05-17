@@ -141,6 +141,8 @@ pip install -r requirements.txt
 ### FastAPI Backend
 
 ```bash
+cd app 
+cd backend
 uvicorn app.main:app --reload
 # API available at http://127.0.0.1:8000
 # Docs at http://127.0.0.1:8000/docs

@@ -70,12 +70,20 @@ Brain-Tumor-Mri-Deep-Learning/
 
 ## 🚀 Features
 
-### Model
-- **30-class** brain tumor MRI classification
-- Baseline CNN architecture (trained for 20 epochs)
-- ~94.2% validation accuracy
-- Preprocessing: resize to 224×224, normalize to [0,1], expand dims
-- Class imbalance handling via data augmentation & class weights
+### Dataset
+- **11,300 MRI images** across **30 classes** (10 tumor types × 3 MRI sequences: T1, T1C+, T2)
+- **Imbalance ratio**: 8.28 (max class 977 vs min class 118)
+- **Original image size**: 512×512 pixels
+- **Split**: 70/15/15 → ~7,910 train / 1,695 val / 1,695 test
+
+### Baseline CNN Model
+- Architecture: `Conv2D(32)→Pool→Conv2D(64)→Pool→Conv2D(128)→Pool→Conv2D(256)→Pool→Flatten→Dense(256)→Dropout(0.5)→Dense(128)→Dropout(0.3)→Dense(30, softmax)`
+- Optimizer: Adam (lr=0.001), Loss: Categorical Crossentropy, Batch size: 32, Epochs: 20
+- **Test Accuracy: 42.49%** | **Precision (macro): 46.48%** | **Recall (macro): 38.59%** | **F1 (macro): 38.88%**
+
+### Preprocessing & Augmentation
+- Resize to 224×224, convert to RGB, normalize pixels to [0,1]
+- Training augmentation: rotation ±15°, width/height shift 0.1, zoom 0.1, horizontal flip
 
 ### Deployment
 - **FastAPI Backend** — REST API at `/predict` with image upload
@@ -87,9 +95,9 @@ Brain-Tumor-Mri-Deep-Learning/
   - User authentication (login/register via localStorage)
 
 ### Notebooks
-- EDA with class distribution & imbalance analysis
-- Dataset splitting pipeline
-- Baseline model training with loss/accuracy tracking
+- `01_information_data.ipynb` — EDA with class distribution & imbalance analysis
+- `02_dataset_split.ipynb` — Dataset splitting pipeline (70/15/15)
+- `03_baseline_detailed.ipynb` — Baseline CNN training with metrics tracking
 
 ---
 
@@ -166,13 +174,20 @@ Default accounts (frontend auth):
 
 ## 📊 Baseline Results
 
-| Metric         | Value  |
-| -------------- | ------ |
-| Validation Acc | ~94.2% |
-| Test Acc       | ~93.7% |
-| Precision      | ~93.8% |
-| Recall         | ~94.1% |
-| F1-Score       | ~93.9% |
+| Metric               | Value    |
+| -------------------- | -------- |
+| Test Accuracy        | 42.49%   |
+| Test Loss            | 1.776    |
+| Precision (macro)    | 46.48%   |
+| Recall (macro)       | 38.59%   |
+| F1-score (macro)     | 38.88%   |
+| Precision (weighted) | 45.57%   |
+| Recall (weighted)    | 42.49%   |
+| F1-score (weighted)  | 40.83%   |
+
+> **Note:** This is a **baseline CNN** model. The 30-class imbalance (ratio 8.28) and limited training (20 epochs) contribute to the modest accuracy. Future improvements could include transfer learning (EfficientNet/ResNet), oversampling minority classes, and longer training with class weights.
+>
+> Training log and figures available in `logs/baseline_log/` and `reports/baseline_model/figures/`.
 
 ---
 

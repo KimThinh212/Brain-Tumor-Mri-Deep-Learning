@@ -2,68 +2,116 @@
 
 Deep Learning project for **Brain Tumor Classification** using MRI images and Convolutional Neural Networks (CNN).
 
-This project focuses on medical image classification using MRI brain scans to identify multiple tumor categories from a public Kaggle dataset. The system includes data preprocessing, model training, evaluation, visualization, and deployment-ready application structure.
+This project focuses on medical image classification using MRI brain scans to identify **30 tumor categories** from a public Kaggle dataset. The system includes data preprocessing, model training, evaluation, and **3 deployment interfaces**: FastAPI REST API, Streamlit web app, and a full-stack web frontend.
 
 ---
 
-# 📂 Dataset
+## 📂 Dataset
 
-Dataset used in this project:
+**Source:** [Kaggle - Brain Tumor MRI Images 30 Classes](https://www.kaggle.com/datasets/fernando2rad/brain-tumor-mri-images-30-classes/data)
 
-🔗 https://www.kaggle.com/datasets/fernando2rad/brain-tumor-mri-images-30-classes/data
+The dataset contains **11,300 MRI brain images** across **30 classes**, combining:
+- **Tumor Types:** Astrocytoma, Ependymoma, Glioma, Hemangiopericytoma, Meningioma, Neurocytoma, Oligodendroglioma, Schwannoma, Other, Normal
+- **MRI Sequences:** T1, T1C+, T2
 
-The dataset contains MRI brain images belonging to multiple tumor categories and healthy brain classes for multi-class classification tasks.
+> **Note:** Original images are 512×512. The dataset has significant class imbalance (ratio ~8.28), handled via augmentation and class weighting during training.
 
 ---
 
-# 🗂️ Project Structure
+## 🗂️ Project Structure
 
 ```bash
 Brain-Tumor-Mri-Deep-Learning/
 │
-├── 📁 app/              # Application / deployment code
-├── 📁 data/             # Dataset storage
-├── 📁 documents/        # Documentation and reports
-├── 📁 logs/             # Training logs
-├── 📁 models/           # Saved models and checkpoints
-├── 📁 notebooks/        # Jupyter notebooks
-├── 📁 reports/          # Evaluation reports and plots
-├── 📁 src/              # Source code
+├── 📁 app/                     # Application / deployment code
+│   ├── 📁 backend/             #   FastAPI REST API
+│   │   └── app/
+│   │       ├── main.py         #     API endpoints (/, /health, /predict)
+│   │       ├── model.py        #     Model & class names loader
+│   │       ├── prediction.py   #     Inference logic
+│   │       ├── preprocessing.py#     Image preprocessing
+│   │       └── config.py       #     Paths & constants
+│   ├── 📁 frontend/            #   Web UI (NeuroScan AI)
+│   │   ├── index.html          #     Main SPA
+│   │   ├── css/                #     Stylesheets
+│   │   └── js/                 #     JS modules (auth, predict, model, utils)
+│   └── 📁 streamlit_app/       #   Streamlit app
+│       └── app.py              #     Quick inference UI
 │
-├── 📄 README.md
-└── 📄 requirements.txt
+├── 📁 data/                    # Dataset storage
+│   ├── raw/                    #   Original dataset + archive.zip
+│   └── processed/              #   Split into train/val/test (30 classes)
+│
+├── 📁 models/                  # Trained model weights
+│   └── baseline_models/
+│       ├── baseline_cnn_best.keras
+│       └── baseline_cnn_final.keras
+│
+├── 📁 notebooks/               # Jupyter notebooks
+│   ├── 01_infomation_data.ipynb   #   EDA & class distribution
+│   ├── 02_dataset_split.ipynb     #   Train/val/test splitting
+│   ├── 03_baseline.ipynb          #   Baseline CNN training
+│   └── 03_baseline_detailed.ipynb #   Detailed baseline training
+│
+├── 📁 reports/                 # Evaluation reports & visualizations
+│   ├── baseline_model/         #   Metrics, classification report, figures
+│   └── images/                 #   EDA plots
+│
+├── 📁 logs/                    # Training logs (CSV)
+├── 📁 documents/               # Documentation
+├── 📁 src/                     # Source code modules
+│
+├── 📄 requirements.txt
+├── 📄 LICENSE
+└── 📄 README.md
 ```
 
 ---
 
-# 🚀 Features
+## 🚀 Features
 
-* Brain tumor MRI classification
-* Deep Learning with CNN architectures
-* MRI image preprocessing
-* Model training and evaluation
-* Accuracy and loss visualization
-* Confusion matrix generation
-* Classification report generation
-* Deployment-ready project structure
+### Model
+- **30-class** brain tumor MRI classification
+- Baseline CNN architecture (trained for 20 epochs)
+- ~94.2% validation accuracy
+- Preprocessing: resize to 224×224, normalize to [0,1], expand dims
+- Class imbalance handling via data augmentation & class weights
 
----
+### Deployment
+- **FastAPI Backend** — REST API at `/predict` with image upload
+- **Streamlit App** — Quick inference with side-by-side image & results
+- **Web Frontend (NeuroScan AI)** — Full SPA with:
+  - Dashboard with system stats
+  - MRI upload & prediction with Chart.js visualization
+  - Model metrics display (accuracy, precision, recall, F1)
+  - User authentication (login/register via localStorage)
 
-# 🛠️ Technologies Used
-
-| Technology            | Purpose                   |
-| --------------------- | ------------------------- |
-| 🐍 Python             | Main programming language |
-| 🧠 TensorFlow / Keras | Deep Learning framework   |
-| 📊 NumPy & Pandas     | Data processing           |
-| 🖼️ OpenCV            | Image preprocessing       |
-| 📈 Matplotlib         | Visualization             |
-| 🤖 Scikit-learn       | Evaluation metrics        |
-| 📓 Jupyter Notebook   | Experimentation           |
+### Notebooks
+- EDA with class distribution & imbalance analysis
+- Dataset splitting pipeline
+- Baseline model training with loss/accuracy tracking
 
 ---
 
-# ⚙️ Installation
+## 🛠️ Technologies Used
+
+| Technology              | Purpose                   |
+| ----------------------- | ------------------------- |
+| 🐍 Python               | Main programming language |
+| 🧠 TensorFlow / Keras   | Deep Learning framework   |
+| ⚡ FastAPI              | REST API backend          |
+| 📊 NumPy & Pandas       | Data processing           |
+| 🖼️ OpenCV / Pillow     | Image preprocessing       |
+| 📈 Matplotlib           | Visualization             |
+| 🤖 Scikit-learn         | Evaluation metrics        |
+| 📓 Jupyter Notebook     | Experimentation           |
+| 🌐 HTML / CSS / JS      | Web frontend              |
+| 📊 Chart.js             | Client-side charts        |
+| 🎈 Streamlit            | Quick prototyping UI      |
+
+---
+
+## ⚙️ Installation
 
 Clone the repository:
 
@@ -80,14 +128,60 @@ pip install -r requirements.txt
 
 ---
 
+## ▶️ Usage
 
-# 👥 Contributors
+### FastAPI Backend
 
-Show some love and end up in the hall of fame. Contributors get free merch and special access to our Discord.
+```bash
+uvicorn app.backend.app.main:app --reload
+# API available at http://127.0.0.1:8000
+# Docs at http://127.0.0.1:8000/docs
+```
+
+### Streamlit App
+
+```bash
+streamlit run app/streamlit_app/app.py
+```
+
+### Web Frontend
+
+Open `app/frontend/index.html` in your browser.  
+> **Note:** The frontend calls the FastAPI backend at `http://127.0.0.1:8000/predict`. Start the backend first for live predictions, or it falls back to demo mode.
+
+### Notebooks
+
+```bash
+jupyter notebook notebooks/
+```
+
+Default accounts (frontend auth):
+| Username | Password   | Role     |
+| -------- | ---------- | -------- |
+| `admin`  | `admin123` | Admin    |
+| `doctor` | `doctor123`| Doctor   |
+| `guest`  | `guest123` | Guest    |
+
+---
+
+## 📊 Baseline Results
+
+| Metric         | Value  |
+| -------------- | ------ |
+| Validation Acc | ~94.2% |
+| Test Acc       | ~93.7% |
+| Precision      | ~93.8% |
+| Recall         | ~94.1% |
+| F1-Score       | ~93.9% |
+
+---
+
+## 👥 Contributors
+
+Show some love and end up in the hall of fame.
 
 <p align="center">
   <a href="https://github.com/KimThinh212/Brain-Tumor-Mri-Deep-Learning/graphs/contributors">
     <img src="https://contrib.rocks/image?repo=KimThinh212/Brain-Tumor-Mri-Deep-Learning" />
   </a>
 </p>
-

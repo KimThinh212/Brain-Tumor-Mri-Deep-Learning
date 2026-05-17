@@ -43,7 +43,7 @@ Dense.from_config = fixed_dense_from_config
 # 3. PATH CONFIG
 # ============================================================
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 
 MODEL_PATH = (
     PROJECT_ROOT

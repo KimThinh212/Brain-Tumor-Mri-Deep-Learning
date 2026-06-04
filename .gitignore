@@ -13,3 +13,7 @@ tmp/*
 /verify_notebooks.py
 /export_notebooks.py
 /fix_notebooks.py
+**/__pycache__/
+*.pyc
+**/__pycache__/
+*.pyc

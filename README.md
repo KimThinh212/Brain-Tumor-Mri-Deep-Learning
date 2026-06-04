@@ -152,6 +152,8 @@ uvicorn app.main:app --reload
 
 ```bash
 streamlit run app/streamlit_app/app.py
+#.\venv\Scripts\Activate.ps1
+streamlit run app/streamlit_app/app_2.py #App cải tiến
 ```
 
 ### Web Frontend

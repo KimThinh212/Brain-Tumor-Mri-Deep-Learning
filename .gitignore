@@ -2,7 +2,12 @@ data/*
 data/raw/*.json
 data/*.zip
 !data/README.md
+venv/*
+tmp/*
+# Chặn các file cụ thể ở gốc
+/run_training.py
 
+<<<<<<< HEAD
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.pyc
@@ -15,3 +20,15 @@ __pycache__/
 venv/
 .venv/
 env/
+=======
+# Chặn mọi file đuôi .log phát sinh ở thư mục gốc
+/*.log
+/update_kernel.py
+/verify_notebooks.py
+/export_notebooks.py
+/fix_notebooks.py
+**/__pycache__/
+*.pyc
+**/__pycache__/
+*.pyc
+>>>>>>> d97ee2a587c62b5e7feb693c5218f572d5dc372d

@@ -172,31 +172,31 @@ function loadModelTabContent() {
         <div class="model-container">
             <div class="model-header">
                 <h2><i class="fas fa-brain"></i> Kiến trúc mô hình</h2>
-                <p>EfficientNet-B0 fine-tuned trên tập dữ liệu Brain Tumor MRI</p>
-                <div class="model-architecture-badge">State-of-the-art CNN Architecture</div>
+                <p>Lightweight CNN tự xây dựng — Phân loại tinh MRI não u 30 lớp</p>
+                <div class="model-architecture-badge">Custom Lightweight CNN · 107,646 Parameters</div>
             </div>
             
             <!-- Metrics Grid -->
             <div class="metrics-grid">
                 <div class="metric-card">
                     <div class="metric-icon"><i class="fas fa-chart-line"></i></div>
-                    <div class="metric-value" id="accuracyValue">94.2%</div>
-                    <div class="metric-label">Độ chính xác (Accuracy)</div>
+                    <div class="metric-value" id="accuracyValue">42.49%</div>
+                    <div class="metric-label">Test Accuracy</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-icon"><i class="fas fa-chart-line"></i></div>
-                    <div class="metric-value" id="precisionValue">93.8%</div>
-                    <div class="metric-label">Precision (Trung bình)</div>
+                    <div class="metric-icon"><i class="fas fa-crosshairs"></i></div>
+                    <div class="metric-value" id="precisionValue">46.48%</div>
+                    <div class="metric-label">Precision (Macro avg)</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-icon"><i class="fas fa-chart-line"></i></div>
-                    <div class="metric-value" id="recallValue">94.1%</div>
-                    <div class="metric-label">Recall (Trung bình)</div>
+                    <div class="metric-icon"><i class="fas fa-redo"></i></div>
+                    <div class="metric-value" id="recallValue">38.59%</div>
+                    <div class="metric-label">Recall (Macro avg)</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-icon"><i class="fas fa-chart-line"></i></div>
-                    <div class="metric-value" id="f1Value">93.9%</div>
-                    <div class="metric-label">F1-Score</div>
+                    <div class="metric-icon"><i class="fas fa-balance-scale"></i></div>
+                    <div class="metric-value" id="f1Value">38.88%</div>
+                    <div class="metric-label">F1-Score (Macro avg)</div>
                 </div>
             </div>
 
@@ -205,30 +205,32 @@ function loadModelTabContent() {
                 <div class="detail-card">
                     <h3><i class="fas fa-code-branch"></i> Chi tiết mô hình</h3>
                     <ul class="detail-list">
-                        <li><span class="detail-label">Base model:</span><span class="detail-value">EfficientNet-B0</span></li>
-                        <li><span class="detail-label">Input size:</span><span class="detail-value">224x224 pixels</span></li>
-                        <li><span class="detail-label">Số lớp:</span><span class="detail-value">4 classes</span></li>
-                        <li><span class="detail-label">Optimizer:</span><span class="detail-value">Adam (lr=0.0001)</span></li>
+                        <li><span class="detail-label">Kiến trúc:</span><span class="detail-value">Lightweight CNN (tự xây dựng)</span></li>
+                        <li><span class="detail-label">Tham số:</span><span class="detail-value">107,646 params (420 KB)</span></li>
+                        <li><span class="detail-label">Input size:</span><span class="detail-value">224 × 224 pixels</span></li>
+                        <li><span class="detail-label">Số lớp phân loại:</span><span class="detail-value">30 lớp</span></li>
+                        <li><span class="detail-label">Optimizer:</span><span class="detail-value">Adam (lr=0.001)</span></li>
                         <li><span class="detail-label">Loss function:</span><span class="detail-value">Categorical Cross-entropy</span></li>
                         <li><span class="detail-label">Batch size:</span><span class="detail-value">32</span></li>
-                        <li><span class="detail-label">Epochs:</span><span class="detail-value">50 (early stopping)</span></li>
+                        <li><span class="detail-label">Epochs:</span><span class="detail-value">20</span></li>
                     </ul>
                 </div>
                 <div class="detail-card">
                     <h3><i class="fas fa-database"></i> Tập dữ liệu</h3>
                     <ul class="detail-list">
-                        <li><span class="detail-label">Nguồn:</span><span class="detail-value">Figshare + SARTAJ</span></li>
-                        <li><span class="detail-label">Tổng số ảnh:</span><span class="detail-value">7,023 ảnh MRI</span></li>
-                        <li><span class="detail-label">Train/Val/Test:</span><span class="detail-value">70/15/15%</span></li>
-                        <li><span class="detail-label">Data augmentation:</span><span class="detail-value">Rotation, Flip, Zoom</span></li>
-                        <li><span class="detail-label">Class balance:</span><span class="detail-value">Đã cân bằng</span></li>
+                        <li><span class="detail-label">Nguồn:</span><span class="detail-value">Figshare (Brain Tumor MRI)</span></li>
+                        <li><span class="detail-label">Tổng ảnh gốc:</span><span class="detail-value">11,300 ảnh MRI</span></li>
+                        <li><span class="detail-label">Tổng lớp:</span><span class="detail-value">30 lớp (8 loại u × 3 chuỗi MRI + Normal)</span></li>
+                        <li><span class="detail-label">Train/Val/Test:</span><span class="detail-value">70% / 15% / 15%</span></li>
+                        <li><span class="detail-label">Tập test:</span><span class="detail-value">1,725 ảnh</span></li>
+                        <li><span class="detail-label">Mất cân bằng lớp:</span><span class="detail-value">Tỉ lệ 8.28× (118 – 977 ảnh/lớp)</span></li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Per-class Accuracy -->
+            <!-- Per-class F1-Score -->
             <div class="per-class-section">
-                <h3><i class="fas fa-table"></i> Độ chính xác theo từng lớp</h3>
+                <h3><i class="fas fa-table"></i> F1-Score theo từng lớp (tập test)</h3>
                 <div class="per-class-grid" id="perClassStats">
                     <!-- Dynamic content -->
                 </div>
@@ -236,8 +238,8 @@ function loadModelTabContent() {
 
             <!-- Training Info -->
             <div class="training-info">
-                <i class="fas fa-chart-line"></i>
-                <p><strong>Training time:</strong> ~4 hours on NVIDIA Tesla T4 | <strong>Validation accuracy:</strong> 94.2% | <strong>Test accuracy:</strong> 93.7%</p>
+                <i class="fas fa-info-circle"></i>
+                <p><strong>Test Loss:</strong> 1.7761 &nbsp;|&nbsp; <strong>Test Accuracy:</strong> 42.49% &nbsp;|&nbsp; <strong>Precision (macro):</strong> 46.48% &nbsp;|&nbsp; <strong>Recall (macro):</strong> 38.59% &nbsp;|&nbsp; <strong>F1 (macro):</strong> 38.88%</p>
             </div>
         </div>
     `;
@@ -280,8 +282,8 @@ function loadHomeContent() {
     homeContainer.innerHTML = `
         <div class="hero-section">
             <div class="hero-banner">
-                <h2>Hệ thống phân tích khối u não bằng AI</h2>
-                <p>Sử dụng mô hình Deep Learning EfficientNet-B0 để hỗ trợ chẩn đoán hình ảnh MRI với độ chính xác cao</p>
+                <h2>Hệ thống phân loại tinh khối u não MRI bằng AI</h2>
+                <p>Sử dụng mô hình Lightweight CNN tự xây dựng để phân loại 30 lớp ảnh MRI não (8 loại u × 3 chuỗi MRI + mô não bình thường)</p>
                 <button class="cta-btn-large" id="homeCtaBtn">
                     <i class="fas fa-microscope"></i> Bắt đầu dự đoán ngay
                 </button>
@@ -291,12 +293,12 @@ function loadHomeContent() {
                         <div class="hero-stat-label">Lượt dự đoán</div>
                     </div>
                     <div class="hero-stat">
-                        <div class="hero-stat-value">94.2%</div>
-                        <div class="hero-stat-label">Độ chính xác</div>
+                        <div class="hero-stat-value">42.49%</div>
+                        <div class="hero-stat-label">Test Accuracy</div>
                     </div>
                     <div class="hero-stat">
-                        <div class="hero-stat-value">4</div>
-                        <div class="hero-stat-label">Lớp bệnh lý</div>
+                        <div class="hero-stat-value">30</div>
+                        <div class="hero-stat-label">Lớp phân loại</div>
                     </div>
                 </div>
             </div>
@@ -305,13 +307,13 @@ function loadHomeContent() {
         <div class="features-section">
             <div class="section-header">
                 <h3>Tính năng nổi bật</h3>
-                <p>Công nghệ AI tiên tiến cho y tế thông minh</p>
+                <p>Công nghệ AI ứng dụng trong hỗ trợ chẩn đoán y tế</p>
             </div>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
-                    <h4>Độ chính xác cao</h4>
-                    <p>Mô hình đạt độ chính xác >94% trên tập kiểm tra</p>
+                    <div class="feature-icon"><i class="fas fa-layer-group"></i></div>
+                    <h4>Phân loại tinh (Fine-grained)</h4>
+                    <p>Phân biệt 30 lớp: 8 loại u × 3 chuỗi MRI (T1, T1C+, T2) + Normal</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-bolt"></i></div>
@@ -321,7 +323,7 @@ function loadHomeContent() {
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-chart-pie"></i></div>
                     <h4>Trực quan hóa</h4>
-                    <p>Biểu đồ xác suất chi tiết cho từng lớp bệnh</p>
+                    <p>Biểu đồ xác suất chi tiết cho cả 30 lớp</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
@@ -336,13 +338,13 @@ function loadHomeContent() {
             <div class="stats-grid">
                 <div class="stat-card">
                     <i class="fas fa-database"></i>
-                    <div class="stat-number">7,023</div>
-                    <div class="stat-label">Ảnh huấn luyện</div>
+                    <div class="stat-number">11,300</div>
+                    <div class="stat-label">Ảnh gốc (30 lớp)</div>
                 </div>
                 <div class="stat-card">
                     <i class="fas fa-chart-line"></i>
-                    <div class="stat-number">94.2%</div>
-                    <div class="stat-label">Accuracy</div>
+                    <div class="stat-number">42.49%</div>
+                    <div class="stat-label">Test Accuracy</div>
                 </div>
                 <div class="stat-card">
                     <i class="fas fa-clock"></i>

@@ -10,6 +10,7 @@ import streamlit as st
 import tensorflow as tf
 from PIL import Image
 from tensorflow.keras.layers import Dense
+import matplotlib.pyplot as plt
 
 
 # ============================================================
@@ -43,6 +44,10 @@ Dense.from_config = fixed_dense_from_config
 # 3. PATH CONFIG
 # ============================================================
 
+<<<<<<< HEAD
+=======
+# Sửa lại: Thêm một .parent nữa để ra hẳn thư mục gốc dự án
+>>>>>>> d97ee2a587c62b5e7feb693c5218f572d5dc372d
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 
 MODEL_PATH = (
@@ -229,7 +234,20 @@ def main():
                 for i in range(len(class_names))
             }
 
-            st.bar_chart(prob_dict)
+            fig, ax = plt.subplots(figsize=(10, 6))
+            classes = list(prob_dict.keys())
+            probs = list(prob_dict.values())
+            colors = ["#1f77b4"] * len(classes)
+            max_idx = int(np.argmax(probs))
+            colors[max_idx] = "#ff7f0e"
+            ax.barh(classes, probs, color=colors)
+            ax.set_xlabel("Probability")
+            ax.set_xlim(0, 1)
+            ax.invert_yaxis()
+            for i, v in enumerate(probs):
+                ax.text(v + 0.01, i, f"{v*100:.1f}%", va="center")
+            fig.tight_layout()
+            st.pyplot(fig)
 
             st.write("Detailed probabilities:")
 

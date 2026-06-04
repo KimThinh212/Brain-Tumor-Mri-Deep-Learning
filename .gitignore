@@ -2,4 +2,14 @@ data/*
 data/raw/*.json
 data/*.zip
 !data/README.md
+venv/*
+tmp/*
+# Chặn các file cụ thể ở gốc
+/run_training.py
 
+# Chặn mọi file đuôi .log phát sinh ở thư mục gốc
+/*.log
+/update_kernel.py
+/verify_notebooks.py
+/export_notebooks.py
+/fix_notebooks.py

@@ -7,6 +7,7 @@ MODEL_PATH = (
     / "models"
     / "baseline_models"
     / "baseline_cnn_best.keras"
+    #/ "brain_tumor_model.keras"
 )
 
 CLASS_INDICES_PATH = (
